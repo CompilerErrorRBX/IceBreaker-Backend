@@ -20,7 +20,7 @@ module.exports = (passport) ->
     clientID: configAuth.facebookAuth.clientID
     clientSecret: configAuth.facebookAuth.clientSecret
     }, (accessToken, refreshToken, profile, done) ->
-      User.findOne( 'facebook.id': profile.id, (err, user) ->
+      User.findOne( 'id': profile.id, (err, user) ->
         if err? then return done err
         if user? then return done(null, user)
         else
@@ -41,7 +41,7 @@ module.exports = (passport) ->
     profileFields: ["emails", "photos"]
     (token, refreshToken, profile, done) ->
       process.nextTick ->
-        User.findOne( 'facebook.id': profile.id, (err, user) ->
+        User.findOne( 'id': profile.id, (err, user) ->
           if err? then return done(err)
           if user? then return done(null, user)
           else

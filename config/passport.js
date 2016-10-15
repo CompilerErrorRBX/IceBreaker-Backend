@@ -25,7 +25,7 @@
       clientSecret: configAuth.facebookAuth.clientSecret
     }, function(accessToken, refreshToken, profile, done) {
       return User.findOne({
-        'facebook.id': profile.id
+        'id': profile.id
       }, function(err, user) {
         var newUser;
         if (err != null) {
@@ -58,7 +58,7 @@
     }, function(token, refreshToken, profile, done) {
       return process.nextTick(function() {
         return User.findOne({
-          'facebook.id': profile.id
+          'id': profile.id
         }, function(err, user) {
           var newUser;
           if (err != null) {
