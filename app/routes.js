@@ -59,11 +59,12 @@
         if (err != null) {
           return console.log(err);
         }
-        user.bio = req.query.info;
+        user.facebook.bio = req.body.info;
         return user.save(function(err, user) {
           if (err != null) {
             return console.log(err);
           }
+          console.log(user);
           return res.send(200);
         });
       });
@@ -75,7 +76,7 @@
         if (err != null) {
           return console.log(err);
         }
-        user.interests[req.query.id] = req.query.new_interest;
+        user.facebook.interests[req.body.id] = req.body.new_interest;
         return user.save(function(err, user) {
           if (err != null) {
             return console.log(err);
@@ -86,11 +87,11 @@
     });
     return app.post('/get_peers', isLoggedIn, function(req, res) {
       var ids;
-      console.log(req.query.ids);
-      ids = req.query.ids.toString().split("'");
+      console.log(req.body.ids);
+      ids = req.body.ids.toString().split("'");
       console.log(ids);
       return User.find({
-        id: {
+        "facebook.id": {
           $in: ids
         }
       }).exec(function(err, users) {

@@ -25,7 +25,7 @@
       clientSecret: configAuth.facebookAuth.clientSecret
     }, function(accessToken, refreshToken, profile, done) {
       return User.findOne({
-        'id': profile.id
+        'facebook.id': profile.id
       }, function(err, user) {
         var newUser;
         if (err != null) {
@@ -35,11 +35,11 @@
           return done(null, user);
         } else {
           newUser = new User();
-          newUser.id = profile.id;
-          newUser.token = accessToken;
-          newUser.name = profile.name.givenName + " " + profile.name.familyName;
-          newUser.email = profile.emails[0].value;
-          newUser.picture = profile.photos[0].value;
+          newUser.facebook.id = profile.id;
+          newUser.facebook.token = accessToken;
+          newUser.facebook.name = profile.name.givenName + " " + profile.name.familyName;
+          newUser.facebook.email = profile.emails[0].value;
+          newUser.facebook.picture = profile.photos[0].value;
           return newUser.save(function() {
             if (err != null) {
               throw err;
@@ -58,7 +58,7 @@
     }, function(token, refreshToken, profile, done) {
       return process.nextTick(function() {
         return User.findOne({
-          'id': profile.id
+          'facebook.id': profile.id
         }, function(err, user) {
           var newUser;
           if (err != null) {
@@ -68,11 +68,11 @@
             return done(null, user);
           } else {
             newUser = new User();
-            newUser.id = profile.id;
-            newUser.token = token;
-            newUser.name = profile.name.givenName + " " + profile.name.familyName;
-            newUser.email = profile.emails[0].value;
-            newUser.picture = profile.photos[0].value;
+            newUser.facebook.id = profile.id;
+            newUser.facebook.token = token;
+            newUser.facebook.name = profile.name.givenName + " " + profile.name.familyName;
+            newUser.facebook.email = profile.emails[0].value;
+            newUser.facebook.picture = profile.photos[0].value;
             return newUser.save(function() {
               if (err != null) {
                 throw err;

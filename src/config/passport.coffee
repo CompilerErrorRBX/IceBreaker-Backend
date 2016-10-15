@@ -20,16 +20,16 @@ module.exports = (passport) ->
     clientID: configAuth.facebookAuth.clientID
     clientSecret: configAuth.facebookAuth.clientSecret
     }, (accessToken, refreshToken, profile, done) ->
-      User.findOne( 'id': profile.id, (err, user) ->
+      User.findOne( 'facebook.id': profile.id, (err, user) ->
         if err? then return done err
         if user? then return done(null, user)
         else
           newUser = new User()
-          newUser.id = profile.id
-          newUser.token = accessToken
-          newUser.name = "#{profile.name.givenName} #{profile.name.familyName}"
-          newUser.email = profile.emails[0].value
-          newUser.picture = profile.photos[0].value
+          newUser.facebook.id = profile.id
+          newUser.facebook.token = accessToken
+          newUser.facebook.name = "#{profile.name.givenName} #{profile.name.familyName}"
+          newUser.facebook.email = profile.emails[0].value
+          newUser.facebook.picture = profile.photos[0].value
           newUser.save ->
             if err? then throw err
             else return done(null, newUser))))
@@ -41,16 +41,16 @@ module.exports = (passport) ->
     profileFields: ["emails", "photos"]
     (token, refreshToken, profile, done) ->
       process.nextTick ->
-        User.findOne( 'id': profile.id, (err, user) ->
+        User.findOne( 'facebook.id': profile.id, (err, user) ->
           if err? then return done(err)
           if user? then return done(null, user)
           else
             newUser = new User()
-            newUser.id = profile.id
-            newUser.token = token
-            newUser.name = "#{profile.name.givenName} #{profile.name.familyName}"
-            newUser.email = profile.emails[0].value
-            newUser.picture = profile.photos[0].value
+            newUser.facebook.id = profile.id
+            newUser.facebook.token = token
+            newUser.facebook.name = "#{profile.name.givenName} #{profile.name.familyName}"
+            newUser.facebook.email = profile.emails[0].value
+            newUser.facebook.picture = profile.photos[0].value
             newUser.save ->
               if err? then throw err
               else return done(null, newUser))))

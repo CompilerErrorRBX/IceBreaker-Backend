@@ -12,19 +12,13 @@ userSchema = mongoose.Schema(
     email: String
     name: String
     picture: String
-  bio: String
-
-  location:
-    latitude: Number
-    longitude: Number
-
+    bio: String
+    interests: [
+      type: String
+    ]
   local:
     email: String
-    password: String
-
-  interests: [
-    type: String
-  ])
+    password: String)
 
 
 # methods

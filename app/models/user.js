@@ -13,22 +13,18 @@
       token: String,
       email: String,
       name: String,
-      picture: String
-    },
-    bio: String,
-    location: {
-      latitude: Number,
-      longitude: Number
+      picture: String,
+      bio: String,
+      interests: [
+        {
+          type: String
+        }
+      ]
     },
     local: {
       email: String,
       password: String
-    },
-    interests: [
-      {
-        type: String
-      }
-    ]
+    }
   });
 
   userSchema.methods.generateHash = function(password) {

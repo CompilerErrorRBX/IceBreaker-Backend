@@ -38,25 +38,26 @@ module.exports = (app, passport) ->
     userId = req.user._id
     User.findById(userId).exec (err, user) ->
         if err? then return console.log err
-        user.bio = req.query.info
+        user.facebook.bio = req.body.info
         user.save (err, user) ->
           if err? then return console.log err
+          console.log user
           res.send(200))
 
   app.post('/update_interest', isLoggedIn, (req, res) ->
     userId = req.user._id
     User.findById(userId).exec (err, user) ->
         if err? then return console.log err
-        user.interests[req.query.id] = req.query.new_interest
+        user.facebook.interests[req.body.id] = req.body.new_interest
         user.save (err, user) ->
           if err? then return console.log err
           res.send(200))
 
   app.post('/get_peers', isLoggedIn, (req, res) ->
-    console.log req.query.ids
-    ids = req.query.ids.toString().split("'")
+    console.log req.body.ids
+    ids = req.body.ids.toString().split("'")
     console.log ids
-    User.find({ id: { $in: ids } }).exec (err, users) ->
+    User.find({ "facebook.id": { $in: ids } }).exec (err, users) ->
       if err? then return console.log err
       res.send(users))
 
