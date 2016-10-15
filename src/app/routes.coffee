@@ -18,6 +18,12 @@ module.exports = (app, passport) ->
       if err? then return console.log err
       res.send(200))
 
+  app.get('/get_user', isLoggedIn, (req, res) ->
+    userId = req.user._id
+    User.findById(userId).exec (err, user) ->
+      if err? then return console.log err
+      res.send(user))
+
   app.post('/update_location', isLoggedIn, (req, res) ->
     userId = req.user._id
     User.findById(userId).exec (err, user) ->
@@ -32,7 +38,7 @@ module.exports = (app, passport) ->
     userId = req.user._id
     User.findById(userId).exec (err, user) ->
         if err? then return console.log err
-        user.bio = req.query.info 
+        user.bio = req.query.info
         user.save (err, user) ->
           if err? then return console.log err
           res.send(200))

@@ -25,6 +25,16 @@
         return res.send(200);
       });
     });
+    app.get('/get_user', isLoggedIn, function(req, res) {
+      var userId;
+      userId = req.user._id;
+      return User.findById(userId).exec(function(err, user) {
+        if (err != null) {
+          return console.log(err);
+        }
+        return res.send(user);
+      });
+    });
     app.post('/update_location', isLoggedIn, function(req, res) {
       var userId;
       userId = req.user._id;
