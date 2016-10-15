@@ -74,7 +74,7 @@
         });
       });
     });
-    return app.post('/get_peers', function(req, res) {
+    return app.post('/get_peers', isLoggedIn, function(req, res) {
       var ids;
       console.log(req.query.ids);
       ids = req.query.ids.toString().split("'");
