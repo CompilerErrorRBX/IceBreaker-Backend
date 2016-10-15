@@ -85,7 +85,7 @@
         });
       });
     });
-    return app.post('/get_peers', isLoggedIn, function(req, res) {
+    app.post('/get_peers', isLoggedIn, function(req, res) {
       var ids;
       console.log(req.body.ids);
       ids = req.body.ids.toString().split("'");
@@ -95,6 +95,14 @@
           $in: ids
         }
       }).exec(function(err, users) {
+        if (err != null) {
+          return console.log(err);
+        }
+        return res.send(users);
+      });
+    });
+    return app.post('/get_all_peers', isLoggedIn, function(req, res) {
+      return User.find().exec(function(err, users) {
         if (err != null) {
           return console.log(err);
         }

@@ -61,6 +61,11 @@ module.exports = (app, passport) ->
       if err? then return console.log err
       res.send(users))
 
+  app.post('/get_all_peers', isLoggedIn, (req, res) ->
+    User.find().exec (err, users) ->
+      if err? then return console.log err
+      res.send(users))
+
   # app.post('/create_media', isLoggedIn, (req, res) ->
   #   newMedia = new Media()
   #   newMedia.user_id = req.user._id
