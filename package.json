@@ -23,7 +23,16 @@
     "passport-facebook-token": "^3.3.0",
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",
-    "passport-twitter": "~1.0.2"
+    "passport-twitter": "~1.0.2",
+    "ejs": "~0.8.5",
+    "grunt": "^1.0.1",
+    "grunt-coffeelint": "0.0.16",
+    "grunt-contrib-coffee": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-execute": "^0.2.2",
+    "grunt-express-server": "^0.5.3",
+    "grunt-node-inspector": "^0.4.2"
   },
   "devDependencies": {
     "ejs": "~0.8.5",
