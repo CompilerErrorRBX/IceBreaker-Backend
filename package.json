@@ -1,7 +1,7 @@
 {
-  "name": "koalie_backend",
+  "name": "icebreaker-dev",
   "version": "1.0.0",
-  "description": "backend for the koalie app",
+  "description": "backend for the icebreaker app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

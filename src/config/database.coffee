@@ -4,5 +4,5 @@ module.exports = {
   #'url': 'mongodb://localhost:27017'
 
   # Production
-  'url': 'mongodb://koalie_client:Asdf1234@ds031835.mlab.com:31835/heroku_b83lff9v'
+  'url': 'mongodb://admin:admin@ds011314.mlab.com:11314/heroku_lx3vb8b8'
 }
