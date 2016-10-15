@@ -8,11 +8,13 @@
   ObjectId = mongoose.Schema.Types.ObjectId;
 
   userSchema = mongoose.Schema({
-    id: String,
-    token: String,
-    email: String,
-    name: String,
-    picture: String,
+    facebook: {
+      id: String,
+      token: String,
+      email: String,
+      name: String,
+      picture: String
+    },
     bio: String,
     location: {
       latitude: Number,
